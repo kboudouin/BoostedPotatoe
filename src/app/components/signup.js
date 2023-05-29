@@ -21,13 +21,14 @@ const Signup = () => {
     if (validateEmail(email)) {
       setErrorMessage("");
 
-      function validatePassword(password) {
-        const passwordRegex = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-        return passwordRegex.test(password);
-      }
-      if (validatePassword(password)) {
-        setErrorMessage("");
-        console.log("Password is valid");
+      // function validatePassword(password) {
+      //   const passwordRegex = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+      //   return passwordRegex.test(password);
+      //   return password;
+      // }
+      // if (validatePassword(password)) {
+      //   setErrorMessage("");
+      //   console.log("Password is valid");
 
         try {
           const response = await axios.post("http://localhost:3001/user", {
@@ -45,12 +46,12 @@ const Signup = () => {
           console.error("Signup failed:", error);
           setErrorMessage("Signup failed, check your password and email");
         }
-      } else {
-        setErrorMessage(
-          "Password must contain at least 8 characters long, contain at least one digit, and contain at least one uppercase letter."
-        );
-        console.log("Password is invalid");
-      }
+      // } else {
+      //   setErrorMessage(
+      //     "Password must contain at least 8 characters long, contain at least one digit, and contain at least one uppercase letter."
+      //   );
+      //   console.log("Password is invalid");
+      // }
     } else {
       setErrorMessage("Email is invalid");
       console.log("Email is invalid");

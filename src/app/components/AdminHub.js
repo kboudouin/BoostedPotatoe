@@ -1,22 +1,21 @@
-"use client";
+'use client'
+
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const Admin = ({ setActiveComponent }) => {
   const [totalMovies, setTotalMovies] = useState(0);
   const [activeComponent, setActiveState] = useState("library");
   const isAdmin = Cookies.get("isAdmin");
-  const router = useRouter();
+  // const router = useRouter();
   const Change = (component) => {
     setActiveComponent(component);
     setActiveState(component);
   };
 
   const GetStats = async () => {
-    const res = await fetch(`http://localhost:3002/movies/1`, {
-      next: { revalidate: 20 },
-    });
+    const res = await fetch(`http://localhost:3002/movies/1`);
     const data = await res.json();
 
     setTotalMovies(data.totalMovies);
@@ -25,10 +24,9 @@ const Admin = ({ setActiveComponent }) => {
     GetStats();
   }, []);
 
-  if (!isAdmin) {
-    router.push("/");
-    return null;
-  }
+  // if (!isAdmin) {
+  //   router.push("/");
+  // }
   return (
     <>
       <div className="flex items-center justify-center pt-10">
